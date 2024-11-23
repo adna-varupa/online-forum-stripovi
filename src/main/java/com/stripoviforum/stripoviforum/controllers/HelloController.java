@@ -1,4 +1,4 @@
-package com.stripoviforum.stripoviforum.controller;
+package com.stripoviforum.stripoviforum.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

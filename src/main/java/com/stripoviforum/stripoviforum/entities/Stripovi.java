@@ -10,6 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "stripovi")
 public class Stripovi {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,4 +26,8 @@ public class Stripovi {
 
     @ManyToMany(mappedBy = "comics")
     private List<Korisnici> users;
+
+    public Long getId() {
+        return id;
+    }
 }

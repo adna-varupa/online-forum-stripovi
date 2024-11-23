@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "postovi")
 public class Postovi {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,10 +25,10 @@ public class Postovi {
     @JoinColumn(name = "comic_id", nullable = false)
     private Stripovi stripovi;
 
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
+
     public void setStripovi(Stripovi stripovi) {
         this.stripovi = stripovi;
     }
-
-    @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
 }

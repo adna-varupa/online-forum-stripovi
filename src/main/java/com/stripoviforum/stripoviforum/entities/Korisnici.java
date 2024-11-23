@@ -31,4 +31,32 @@ public class Korisnici {
             inverseJoinColumns = @JoinColumn(name = "comic_id")
     )
     private List<Stripovi> comics = new ArrayList<>();
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public List<Stripovi> getComics() {
+        return comics;
+    }
+
+    public void setComics(List<Stripovi> comics) {
+        this.comics = comics;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

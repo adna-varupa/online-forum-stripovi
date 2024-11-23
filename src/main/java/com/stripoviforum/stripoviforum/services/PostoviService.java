@@ -19,8 +19,8 @@ public class PostoviService {
         return postoviRepository.findAll();
     }
 
-    public List<Postovi> findPostsByComicId(Long comicId) {
-        return postoviRepository.findByComicId(comicId);
+    public List<Postovi> findPostsByComicId(Long stripoviId) {
+        return postoviRepository.findByStripoviId(stripoviId);
     }
 
     public Postovi savePost(Postovi post, Long comicId) {

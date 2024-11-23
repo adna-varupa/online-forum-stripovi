@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface PostoviRepository extends JpaRepository<Postovi, Long> {
-    List<Postovi> findByComicId(Long comicId);
+    List<Postovi> findByStripoviId(Long stripoviId);
 }

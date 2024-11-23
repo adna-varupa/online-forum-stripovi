@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit User</title>
+</head>
+<body>
+<h1>Edit User</h1>
+<form th:action="@{/users/edit/{userId}(userId=${user.id})}" th:object="${user}" method="post">
+    <label for="username">Username</label>
+    <input id="username" type="text" th:field="*{username}" />
+
+    <label for="role">Role</label>
+    <input id="role" type="text" th:field="*{role}" />
+
+    <label for="comics">Comics</label>
+    <select id="comics" th:field="*{comics}" multiple="true">
+        <option th:each="comic : ${comics}"
+                th:value="${comic.id}"
+                th:text="${comic.title}"
+                th:selected="*{comics.contains(comic)}"></option>
+    </select>
+
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>
