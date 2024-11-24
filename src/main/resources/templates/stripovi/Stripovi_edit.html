@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Edit Comic</title>
+  <title>Edit Comic</title>
 </head>
 <body>
 <h1>Edit Comic</h1>
 <form th:action="@{/comics/edit/{comicId}(comicId=${comic.id})}" th:object="${comic}" method="post">
-    <input th:field="${title}" id="title" />
-    <input th:field="${author}" id="author" />
-    <textarea th:field="${description}" id="description"></textarea>
-    <button type="submit">Save</button>
+  <label for="title">Title:</label>
+  <input id="title" th:field="*{title}" />
+
+  <label for="author">Author:</label>
+  <input id="author" th:field="*{author}" />
+
+  <label for="description">Description:</label>
+  <textarea id="description" th:field="*{description}"></textarea>
+
+  <button type="submit">Save</button>
 </form>
 <a th:href="@{/comics}">Cancel</a>
 </body>

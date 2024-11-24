@@ -1,21 +1,32 @@
 package com.stripoviforum.stripoviforum.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
+@Table(name = "stripovi")
 public class Stripovi {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    @Column(nullable = false, length = 100)
+    private String title;
 
-    @OneToMany(mappedBy = "stripovi")
-    private List<Postovi> posts;  // A comic can have multiple posts
+    @Column(length = 500)
+    private String description;
 
-    // Getters and setters
+    @Column(nullable = false, length = 50)
+    private String author;
+
+    @ManyToMany(mappedBy = "comics")
+    private List<Korisnici> users;
+
     public Long getId() {
         return id;
     }
@@ -24,19 +35,35 @@ public class Stripovi {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public List<Postovi> getPosts() {
-        return posts;
+    public String getDescription() {
+        return description;
     }
 
-    public void setPosts(List<Postovi> posts) {
-        this.posts = posts;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public List<Korisnici> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<Korisnici> users) {
+        this.users = users;
     }
 }
