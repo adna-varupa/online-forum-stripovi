@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Postovi za Strip</title>
+    <title>Postovi</title>
 </head>
 <body>
-<h1>Postovi za Strip</h1>
-<p><a th:href="@{/posts/comic/{comicId}(comicId=${comicId})}">Back to Comic</a></p>
+<h1>List of Posts</h1>
 
-<h2>Postovi:</h2>
+<!-- Loop through the posts and display them -->
 <table>
     <thead>
     <tr>
@@ -25,9 +24,5 @@
     </tbody>
 </table>
 
-<h2>Dodajte novi post:</h2>
-<a th:href="@{/posts/new/{comicId}(comicId=${comicId})}">
-    <button type="button">Novi Post</button>
-</a>
 </body>
 </html>

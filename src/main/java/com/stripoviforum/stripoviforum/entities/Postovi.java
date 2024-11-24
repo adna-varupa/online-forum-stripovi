@@ -1,34 +1,56 @@
 package com.stripoviforum.stripoviforum.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import java.time.LocalDateTime;
 
-@Getter
-@Setter
 @Entity
-@Table(name = "postovi")
 public class Postovi {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 500)
+    private String title;
     private String content;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "korisnik_id")
     private Korisnici korisnik;
 
     @ManyToOne
-    @JoinColumn(name = "comic_id", nullable = false)
-    private Stripovi stripovi;
+    @JoinColumn(name = "comic_id")
+    private Stripovi stripovi;  // This connects the post to a comic
 
-    @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    // Getters and setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Stripovi getStripovi() {
+        return stripovi;
+    }
 
     public void setStripovi(Stripovi stripovi) {
         this.stripovi = stripovi;
     }
 }
+
