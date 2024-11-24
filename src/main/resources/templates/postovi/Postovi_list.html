@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1>Postovi za Strip</h1>
-<p><a th:href="@{/comics/{comicId}(comicId=${comicId})}">Back to Comic</a></p>
+<p><a th:href="@{/posts/comic/{comicId}(comicId=${comicId})}">Back to Comic</a></p>
 
 <h2>Postovi:</h2>
 <table>
@@ -26,8 +26,8 @@
 </table>
 
 <h2>Dodajte novi post:</h2>
-<form th:action="@{/posts/new/{comicId}(comicId=${comicId})}" method="get">
-    <button type="submit">Novi Post</button>
-</form>
+<a th:href="@{/posts/new/{comicId}(comicId=${comicId})}">
+    <button type="button">Novi Post</button>
+</a>
 </body>
 </html>

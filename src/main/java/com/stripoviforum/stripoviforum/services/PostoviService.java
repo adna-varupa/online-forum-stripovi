@@ -27,7 +27,7 @@ public class PostoviService {
         if (comicId != null) {
             stripoviService.findComicById(comicId).ifPresent(comic -> post.setStripovi(comic));
         }
-        return postoviRepository.save(post);
+        return postoviRepository.save(post);  // Save the post
     }
 
     public Postovi findPostById(Long id) {

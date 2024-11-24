@@ -14,6 +14,7 @@
     <p><strong>Comic:</strong> <span th:text="${post.stripovi.title}"></span></p>
 </div>
 
-<a th:href="@{/posts/comic/{comicId}(comicId=${post.stripovi.id})}">Back to Posts for Comic</a>
+<p><a th:href="@{/posts/comic/{comicId}(comicId=${comicId})}">Back to Comic</a></p>
+
 </body>
 </html>

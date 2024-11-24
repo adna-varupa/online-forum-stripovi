@@ -4,18 +4,25 @@
     <title>Create Post</title>
 </head>
 <body>
-<h1>Create Post</h1>
+<h1>Create a New Post</h1>
+<p><a th:href="@{/posts}">Back to Posts List</a></p>
 
-<form th:action="@{/posts/new/{comicId}(comicId=${comicId})}" th:object="${post}" method="post">
-    <!-- Input for post content -->
-    <label for="content">Content:</label>
-    <textarea id="content" th:field="${content}" rows="4" cols="50" placeholder="Enter post content..."></textarea>
+<!-- Form for creating a new post -->
+<form th:action="@{/posts/new}" th:object="${post}" method="post">
+    <label for="comicId">Select Comic:</label>
+    <select id="comicId" name="comicId">
+        <!-- Iterate over the list of comics -->
+        <option th:each="comic : ${comics}"
+                th:value="${comic.id}"
+                th:text="${comic.title}"></option>
+    </select>
+    <br><br>
 
-    <!-- Input for comic selection (list of available comics) -->
-    <input type="hidden" th:field="*{stripovi.id}" th:value="${comicId}" />
+    <label for="content">Post Content:</label>
+    <textarea id="content" th:field="*{content}" placeholder="Enter your post content"></textarea>
+    <br><br>
 
-    <button type="submit">Submit Post</button>
+    <button type="submit">Save Post</button>
 </form>
-
 </body>
 </html>
