@@ -1,6 +1,7 @@
 package com.stripoviforum.stripoviforum.controllers;
 
 import com.stripoviforum.stripoviforum.entities.Postovi;
+import com.stripoviforum.stripoviforum.repositories.PostoviRepository;
 import com.stripoviforum.stripoviforum.services.PostoviService;
 import com.stripoviforum.stripoviforum.services.StripoviService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,14 @@ public class PostoviController {
 
     @Autowired
     private StripoviService stripoviService;
+    @Autowired
+    private PostoviRepository postoviRepository;
 
     @GetMapping("/posts")
-    public String listAllPosts(Model model) {
-        List<Postovi> posts = postoviService.findAllPosts();  // Fetch all posts
-        model.addAttribute("posts", posts);  // Add posts to model
-        return "postovi/Postovi_list";  // View to display posts
+    public String getPosts(Model model) {
+        List<Postovi> posts = postoviService.getAllPosts();
+        model.addAttribute("posts", posts);
+        return "postovi/Postovi_list";
     }
 
     // Show the form to create a new post

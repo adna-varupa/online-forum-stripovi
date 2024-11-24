@@ -1,4 +1,5 @@
 package com.stripoviforum.stripoviforum.entities;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
 
@@ -12,10 +13,15 @@ public class Postovi {
     private String title;
     private String content;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "korisnik_id")
     private Korisnici korisnik;
-
+    public Korisnici getKorisnik() {
+        return korisnik;
+    }
+    public void setKorisnik(Korisnici korisnik) {
+        this.korisnik = korisnik;
+    }
     @ManyToOne
     @JoinColumn(name = "comic_id")
     private Stripovi stripovi;  // This connects the post to a comic
@@ -52,5 +58,10 @@ public class Postovi {
     public void setStripovi(Stripovi stripovi) {
         this.stripovi = stripovi;
     }
-}
 
+    private LocalDateTime createdAt;
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+}

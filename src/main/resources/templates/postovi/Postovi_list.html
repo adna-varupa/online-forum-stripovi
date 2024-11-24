@@ -17,12 +17,17 @@
     </thead>
     <tbody>
     <tr th:each="post : ${posts}">
-        <td th:text="${post.korisnik.username}"></td>
+        <td><span th:text="${post.korisnik != null ? post.korisnik.username : 'Unknown User'}"></span></td>
         <td th:text="${post.content}"></td>
         <td th:text="${post.createdAt}"></td>
     </tr>
     </tbody>
 </table>
+<div>
+    <a href="/posts/new">
+        <button>Create New Post</button>
+    </a>
+</div>
 
 </body>
 </html>

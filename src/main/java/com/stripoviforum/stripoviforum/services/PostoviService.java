@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Arrays;
 
 @Service
 public class PostoviService {
@@ -22,10 +23,8 @@ public class PostoviService {
         }
         postoviRepository.save(post);  // Save the post to the repository
     }
-
-    public List<Postovi> findAllPosts() {
-        return postoviRepository.findAll();
+    public List<Postovi> getAllPosts() {
+        return postoviRepository.findAll();  // Assuming eager loading is set up, this should work
     }
-
 
 }

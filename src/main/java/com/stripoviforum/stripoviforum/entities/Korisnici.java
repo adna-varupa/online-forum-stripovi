@@ -58,5 +58,6 @@ public class Korisnici {
 
     public void setId(Long id) {
         this.id = id;
+
     }
 }

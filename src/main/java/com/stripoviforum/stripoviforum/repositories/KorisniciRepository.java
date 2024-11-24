@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import com.stripoviforum.stripoviforum.entities.Korisnici;
 import java.util.Optional;
 
-@Repository
 public interface KorisniciRepository extends JpaRepository<Korisnici, Long> {
-    Optional<Korisnici> findByUsername(String username);
+    Optional<Korisnici> findById(Long id);  // This should be in your repository
 }
