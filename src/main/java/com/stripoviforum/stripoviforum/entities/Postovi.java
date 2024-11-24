@@ -14,7 +14,7 @@ public class Postovi {
     private String content;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "korisnik_id")
+    @JoinColumn(name = "user_id")
     private Korisnici korisnik;
     public Korisnici getKorisnik() {
         return korisnik;

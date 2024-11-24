@@ -53,4 +53,8 @@ public class KorisniciService {
     public List<Korisnici> getAllUsers() {
         return korisniciRepository.findAll();  // Fetch all users
     }
+
+    public Korisnici getUserById(Long id) {
+        return korisniciRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+    }
 }

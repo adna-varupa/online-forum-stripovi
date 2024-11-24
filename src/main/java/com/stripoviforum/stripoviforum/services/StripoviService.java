@@ -29,4 +29,7 @@ public class StripoviService {
     public void deleteComic(Long id) {
         stripoviRepository.deleteById(id);
     }
+    public Stripovi getComicById(Long id) {
+        return stripoviRepository.findById(id).orElseThrow(() -> new RuntimeException("Comic not found"));
+    }
 }

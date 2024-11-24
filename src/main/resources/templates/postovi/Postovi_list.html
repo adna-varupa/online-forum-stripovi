@@ -13,6 +13,7 @@
         <th>Autor</th>
         <th>Content</th>
         <th>Created At</th>
+        <th>Action</th> <!-- Add a column for the button -->
     </tr>
     </thead>
     <tbody>
@@ -20,9 +21,14 @@
         <td><span th:text="${post.korisnik != null ? post.korisnik.username : 'Unknown User'}"></span></td>
         <td th:text="${post.content}"></td>
         <td th:text="${post.createdAt}"></td>
+        <td>
+            <!-- Add a button to view post details -->
+            <button><a th:href="@{/posts/{postId}(postId=${post.id})}" style="text-decoration:none;">View Details</a></button>
+        </td>
     </tr>
     </tbody>
 </table>
+
 <div>
     <a href="/posts/new">
         <button>Create New Post</button>

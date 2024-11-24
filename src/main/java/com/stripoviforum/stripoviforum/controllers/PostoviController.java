@@ -1,17 +1,17 @@
 package com.stripoviforum.stripoviforum.controllers;
 
+import com.stripoviforum.stripoviforum.entities.Korisnici;
 import com.stripoviforum.stripoviforum.entities.Postovi;
+import com.stripoviforum.stripoviforum.entities.Stripovi;
 import com.stripoviforum.stripoviforum.repositories.PostoviRepository;
 import com.stripoviforum.stripoviforum.services.KorisniciService;
 import com.stripoviforum.stripoviforum.services.PostoviService;
 import com.stripoviforum.stripoviforum.services.StripoviService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -48,9 +48,26 @@ public class PostoviController {
 
     // Handle the form submission to create a new post
     @PostMapping("/posts/new")
-    public String savePost(@RequestParam Long comicId, @ModelAttribute Postovi post) {
-        postoviService.savePost(post, comicId);  // Save the post with the selected comic
-        return "redirect:/posts";  // Redirect to the posts list (or wherever you want)
+    public String savePost(@RequestParam Long userId, @RequestParam Long comicId, @ModelAttribute Postovi post) {
+        // Set the user and comic from the form data
+        Korisnici korisnik = korisniciService.getUserById(userId); // Ensure you have a method like this in your UserService
+        Stripovi strip = stripoviService.getComicById(comicId); // Similarly, a method in ComicService to get a Comic
+
+        // Set the user and comic to the post
+        post.setKorisnik(korisnik);
+        post.setStripovi(strip);
+
+        postoviService.savePost(post);  // Save the post (assuming PostoviService is saving it properly)
+
+        return "redirect:/posts";  // Redirect to the posts list or other page
     }
+
+    @GetMapping("/posts/{postId}")
+    public String viewPostDetails(@PathVariable Long postId, Model model) {
+        Postovi post = postoviService.getPostById(postId);  // Fetch the post details using the postId
+        model.addAttribute("post", post);  // Add post to the model
+        return "postovi/Postovi_view";  // The Thymeleaf template to render the post details
+    }
+
 
 }

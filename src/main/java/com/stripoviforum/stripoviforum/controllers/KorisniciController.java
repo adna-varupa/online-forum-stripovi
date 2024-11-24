@@ -27,6 +27,11 @@ public class KorisniciController {
         model.addAttribute("users", korisniciService.findAllUsers());
         return "korisnici/Korisnici_list";
     }
+    @GetMapping("/create")
+    public String createUserForm(Model model) {
+        model.addAttribute("users", korisniciService.findAllUsers());
+        return "korisnici/Korisnici_create";
+    }
 
     // View details of a specific user
     @GetMapping("/{userId}")
