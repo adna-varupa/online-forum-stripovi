@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 @Controller
 @RequestMapping("/users")
@@ -23,13 +22,13 @@ public class KorisniciController {
     @GetMapping
     public String listUsers(Model model) {
         model.addAttribute("users", korisniciService.findAllUsers());
-        return "user_list";
+        return "Korisnici_list";
     }
 
     @GetMapping("/{userId}")
     public String viewUser(@PathVariable Long userId, Model model) {
         korisniciService.findUserById(userId).ifPresent(user -> model.addAttribute("user", user));
-        return "user_view";
+        return "Korisnici_view";
     }
 
     @GetMapping("/edit/{userId}")

@@ -22,21 +22,21 @@ public class StripoviController {
     public String listComics(Model model) {
         List<Stripovi> comics = stripoviService.findAllComics();  // Dohvati sve stripove
         model.addAttribute("comics", comics);  // Dodaj stripove u model
-        return "comic_list";  // Pogled za prikaz svih stripova
+        return "Stripovi_list";  // Pogled za prikaz svih stripova
     }
 
     // GET: Prikaz detalja o jednom stripu
     @GetMapping("/{comicId}")
     public String viewComic(@PathVariable Long comicId, Model model) {
         stripoviService.findComicById(comicId).ifPresent(comic -> model.addAttribute("comic", comic));  // Dohvati strip po ID-u
-        return "comic_view";  // Pogled za detalje stripa
+        return "Stripovi_view";  // Pogled za detalje stripa
     }
 
     // GET: Prikaz obrasca za dodavanje novog stripa
     @GetMapping("/new")
     public String showCreateForm(Model model) {
         model.addAttribute("comic", new Stripovi());  // Dodaj novi prazni strip u model
-        return "comic_form";  // Pogled za obrazac za kreiranje novog stripa
+        return "Stripovi_form";  // Pogled za obrazac za kreiranje novog stripa
     }
 }
-// POST: Spremi no
+
