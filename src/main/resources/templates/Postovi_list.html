@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Postovi za Strip</title>
+</head>
+<body>
+<h1>Postovi za Strip</h1>
+<p><a th:href="@{/comics/{comicId}(comicId=${comicId})}">Back to Comic</a></p>
+
+<h2>Postovi:</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Autor</th>
+        <th>Content</th>
+        <th>Created At</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="post : ${posts}">
+        <td th:text="${post.korisnik.username}"></td>
+        <td th:text="${post.content}"></td>
+        <td th:text="${post.createdAt}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Dodajte novi post:</h2>
+<form th:action="@{/posts/new/{comicId}(comicId=${comicId})}" method="get">
+    <button type="submit">Novi Post</button>
+</form>
+</body>
+</html>

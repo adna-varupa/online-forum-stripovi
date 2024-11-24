@@ -30,7 +30,12 @@ public class PostoviService {
         return postoviRepository.save(post);
     }
 
+    public Postovi findPostById(Long id) {
+        return postoviRepository.findById(id).orElse(null); 
+    }
+
     public void deletePost(Long id) {
         postoviRepository.deleteById(id);
     }
 }
+

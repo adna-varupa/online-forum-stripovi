@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Post</title>
+</head>
+<body>
+<h1>Create Post</h1>
+
+<form th:action="@{/posts/new/{comicId}(comicId=${comicId})}" th:object="${post}" method="post">
+    <!-- Input for post content -->
+    <label for="content">Content:</label>
+    <textarea id="content" th:field="${content}" rows="4" cols="50" placeholder="Enter post content..."></textarea>
+
+    <!-- Input for comic selection (list of available comics) -->
+    <input type="hidden" th:field="*{stripovi.id}" th:value="${comicId}" />
+
+    <button type="submit">Submit Post</button>
+</form>
+
+</body>
+</html>
