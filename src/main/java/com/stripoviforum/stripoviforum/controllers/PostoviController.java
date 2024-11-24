@@ -2,6 +2,7 @@ package com.stripoviforum.stripoviforum.controllers;
 
 import com.stripoviforum.stripoviforum.entities.Postovi;
 import com.stripoviforum.stripoviforum.repositories.PostoviRepository;
+import com.stripoviforum.stripoviforum.services.KorisniciService;
 import com.stripoviforum.stripoviforum.services.PostoviService;
 import com.stripoviforum.stripoviforum.services.StripoviService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class PostoviController {
 
     @Autowired
     private PostoviService postoviService;
+    @Autowired
+    private KorisniciService korisniciService;
+
 
     @Autowired
     private StripoviService stripoviService;
@@ -37,8 +41,10 @@ public class PostoviController {
     public String showCreatePostForm(Model model) {
         model.addAttribute("post", new Postovi());  // Add an empty Postovi object for form binding
         model.addAttribute("comics", stripoviService.findAllComics());  // Add list of comics for selection
+        model.addAttribute("users", korisniciService.getAllUsers());  // Add list of users
         return "postovi/Postovi_form";  // This will look for a Thymeleaf template
     }
+
 
     // Handle the form submission to create a new post
     @PostMapping("/posts/new")

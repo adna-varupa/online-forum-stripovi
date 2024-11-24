@@ -49,4 +49,8 @@ public class KorisniciService {
             throw new IllegalArgumentException("User not found"); // Throw exception if user is not found
         }
     }
+
+    public List<Korisnici> getAllUsers() {
+        return korisniciRepository.findAll();  // Fetch all users
+    }
 }
