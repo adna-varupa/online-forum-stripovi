@@ -22,13 +22,13 @@ public class KorisniciController {
     @GetMapping
     public String listUsers(Model model) {
         model.addAttribute("users", korisniciService.findAllUsers());
-        return "Korisnici_list";
+        return "korisnici/Korisnici_list";
     }
 
     @GetMapping("/{userId}")
     public String viewUser(@PathVariable Long userId, Model model) {
         korisniciService.findUserById(userId).ifPresent(user -> model.addAttribute("user", user));
-        return "Korisnici_view";
+        return "korisnici/Korisnici_view";
     }
 
     @GetMapping("/edit/{userId}")
@@ -37,7 +37,7 @@ public class KorisniciController {
             model.addAttribute("user", user);
             model.addAttribute("comics", stripoviService.findAllComics());
         });
-        return "Korisnici_edit";
+        return "korisnici/Korisnici_edit";
     }
 
     @PostMapping("/edit/{userId}")
