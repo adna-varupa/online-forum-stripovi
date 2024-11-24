@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Comic List</title>
+</head>
+<body>
+<h1>Comics</h1>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="comic : ${comics}">
+        <td th:text="${comic.title}"></td>
+        <td th:text="${comic.author}"></td>
+        <td>
+            <a th:href="@{/comics/{comicId}(comicId=${comic.id})}">View</a>
+            <a th:href="@{/comics/edit/{comicId}(comicId=${comic.id})}">Edit</a>
+            <a th:href="@{/comics/delete/{comicId}(comicId=${comic.id})}">Delete</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

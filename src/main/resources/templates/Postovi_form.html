@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dodaj novi post</title>
+</head>
+<body>
+<h1>Dodajte novi post</h1>
+
+<form th:action="@{/posts/new/{comicId}(comicId=${comicId})}" th:object="${post}" method="post">
+    <label for="content">Content:</label>
+    <textarea id="content" th:field="${content}" rows="4" cols="50"></textarea>
+
+    <button type="submit">Spremi Post</button>
+</form>
+
+<p><a th:href="@{/posts/comic/{comicId}(comicId=${comicId})}">Back to Posts</a></p>
+</body>
+</html>
