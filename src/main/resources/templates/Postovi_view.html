@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Post</title>
+</head>
+<body>
+<h1>Post Details</h1>
+
+<div>
+    <h2>Post by: <span th:text="${post.korisnik.username}"></span></h2>
+    <p><strong>Content:</strong></p>
+    <p th:text="${post.content}"></p>
+    <p><strong>Posted on:</strong> <span th:text="${post.createdAt}"></span></p>
+    <p><strong>Comic:</strong> <span th:text="${post.stripovi.title}"></span></p>
+</div>
+
+<a th:href="@{/posts/comic/{comicId}(comicId=${post.stripovi.id})}">Back to Posts for Comic</a>
+</body>
+</html>

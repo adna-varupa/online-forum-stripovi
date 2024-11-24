@@ -43,4 +43,14 @@ public class PostoviController {
         postoviService.savePost(post, comicId);  // Spremi post koristeći servis
         return "redirect:/posts/comic/" + comicId;  // Preusmjeri na prikaz postova za odabrani strip
     }
+
+    @GetMapping("/view/{postId}")
+    public String viewPost(@PathVariable Long postId, Model model) {
+        Postovi post = postoviService.findPostById(postId);  // Dohvati post po ID-u
+        if (post != null) {
+            model.addAttribute("post", post);  // Dodaj post u model
+            return "post_view";  // Prikazivanje stranice za post
+        }
+        return "error";  // Ako post nije pronađen, prikaži stranicu s greškom
+    }
 }
