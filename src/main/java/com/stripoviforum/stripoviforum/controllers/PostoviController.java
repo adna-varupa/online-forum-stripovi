@@ -39,11 +39,10 @@ public class PostoviController {
     }
 
     @GetMapping("/new")
-    public String showCreatePostForm(Model model) {
-        model.addAttribute("post", new Postovi()); // Add an empty post object for form binding
-        model.addAttribute("comics", stripoviService.findAllComics()); // Pass list of comics for selection
-        return "postovi/Postovi_form"; // Render the form page
+    public String showCreatePostForm() {
+        return "postovi/Postovi_form";
     }
+
 
     @PostMapping("/new")
     public String savePost(@RequestParam Long comicId, @ModelAttribute Postovi post) {
