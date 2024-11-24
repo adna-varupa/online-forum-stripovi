@@ -18,7 +18,15 @@ public class StripoviService {
         return stripoviRepository.findAll();
     }
 
-    public Optional<Stripovi> findComicById(Long comicId) {
-        return stripoviRepository.findById(comicId);
+    public Optional<Stripovi> findComicById(Long id) {
+        return stripoviRepository.findById(id);
+    }
+
+    public Stripovi saveComic(Stripovi comic) {
+        return stripoviRepository.save(comic);
+    }
+
+    public void deleteComic(Long id) {
+        stripoviRepository.deleteById(id);
     }
 }
