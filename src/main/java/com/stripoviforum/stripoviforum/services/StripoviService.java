@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @Service
 public class StripoviService {
-
     @Autowired
     private StripoviRepository stripoviRepository;
 
