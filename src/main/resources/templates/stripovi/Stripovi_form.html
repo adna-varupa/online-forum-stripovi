@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Add Comic</title>
+</head>
+<body>
+<h1>Add New Comic</h1>
+
+<form th:action="@{/comics/new}" th:object="${comic}" method="post">
+  <label for="title">Title:</label>
+  <input id="title" type="text" th:field="*{title}" placeholder="Enter comic title" />
+  <div th:if="${titleError}" th:text="${titleError}" class="error"></div>
+
+  <label for="author">Author:</label>
+  <input id="author" type="text" th:field="*{author}" placeholder="Enter comic author" />
+  <div th:if="${authorError}" th:text="${authorError}" class="error"></div>
+
+  <label for="description">Description:</label>
+  <textarea id="description" th:field="*{description}" placeholder="Enter comic description"></textarea>
+  <div th:if="${descriptionError}" th:text="${descriptionError}" class="error"></div>
+
+  <button type="submit">Save</button>
+  <a th:href="@{/comics}">Cancel</a>
+</form>
+
+</body>
+</html>

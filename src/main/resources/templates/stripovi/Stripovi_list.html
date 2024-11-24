@@ -5,7 +5,13 @@
 </head>
 <body>
 <h1>Comics</h1>
-<table>
+<a th:href="@{/comics/new}">Add New Comic</a>
+
+<div th:if="${#lists.isEmpty(comics)}">
+    <p>No comics available. Add one now!</p>
+</div>
+
+<table th:if="${!#lists.isEmpty(comics)}">
     <tr>
         <th>Title</th>
         <th>Author</th>
@@ -15,9 +21,11 @@
         <td th:text="${comic.title}"></td>
         <td th:text="${comic.author}"></td>
         <td>
-            <a th:href="@{/comics/{comicId}(comicId=${comic.id})}">View</a>
-            <a th:href="@{/comics/edit/{comicId}(comicId=${comic.id})}">Edit</a>
-            <a th:href="@{/comics/delete/{comicId}(comicId=${comic.id})}">Delete</a>
+            <a th:href="@{/comics/{comicId}(comicId=${comic.id})}" aria-label="View details for [[${comic.title}]]">View</a>
+            <a th:href="@{/comics/edit/{comicId}(comicId=${comic.id})}" aria-label="Edit [[${comic.title}]]">Edit</a>
+            <a th:href="@{/comics/delete/{comicId}(comicId=${comic.id})}"
+               aria-label="Delete [[${comic.title}]]"
+               onclick="return confirm('Are you sure you want to delete [[${comic.title}]]?')">Delete</a>
         </td>
     </tr>
 </table>
