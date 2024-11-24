@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Postovi</title>
+    <title>ComicTales</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript">
+        function confirmDelete(event) {
+            event.preventDefault(); // Prevent the form from being submitted immediately
+            var result = confirm("Are you sure you want to delete this post?");
+            if (result) {
+                // If the user confirms, submit the form
+                event.target.submit();
+            }
+        }
+    </script>
 </head>
 <body>
-<h1>List of Posts</h1>
+<h1>ComicTales</h1>
 
 <!-- Loop through the posts and display them -->
 <table>
@@ -13,7 +24,9 @@
         <th>Autor</th>
         <th>Content</th>
         <th>Created At</th>
-        <th>Action</th> <!-- Add a column for the button -->
+        <th>View</th>
+        <th>Edit</th>
+        <th>Delete</th><!-- Add a column for the button -->
     </tr>
     </thead>
     <tbody>
@@ -24,6 +37,18 @@
         <td>
             <!-- Add a button to view post details -->
             <button><a th:href="@{/posts/{postId}(postId=${post.id})}" style="text-decoration:none;">View Details</a></button>
+        </td>
+        <td>
+            <!-- Edit button -->
+            <button>
+                <a th:href="@{/posts/edit/{postId}(postId=${post.id})}" style="text-decoration:none;">Edit Post</a>
+            </button>
+        </td>
+        <td>
+            <!-- Add the form for deleting the post -->
+            <form th:action="@{/deletePost/{id}(id=${post.id})}" method="post" onsubmit="confirmDelete(event)">
+                <button type="submit">Delete Post</button>
+            </form>
         </td>
     </tr>
     </tbody>

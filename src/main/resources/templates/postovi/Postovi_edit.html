@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>View Post</title>
+    <title>Edit Post</title>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&display=swap" rel="stylesheet">
     <style>
         /* General Page Styling */
@@ -21,7 +21,7 @@
             text-shadow: 2px 2px #ffd9ec;
         }
 
-        div {
+        form {
             background-color: #ffffff;
             padding: 20px;
             border-radius: 15px;
@@ -30,72 +30,72 @@
             margin: 20px auto;
         }
 
-        h2 {
+        label {
+            font-size: 1.2em;
             color: #ff66b3;
+            display: block;
             margin-bottom: 10px;
         }
 
-        p {
-            font-size: 1.2em;
-            line-height: 1.5;
-            margin: 10px 0;
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.1em;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+            resize: none;
+            height: 150px;
+            margin-bottom: 20px;
         }
 
-        p strong {
-            color: #ff66b3;
-        }
-
-        a {
-            display: inline-block;
-            text-decoration: none;
+        button {
             background-color: #ff66b3;
             color: #ffffff;
-            padding: 10px 20px;
-            border-radius: 20px;
             font-size: 1.2em;
-            text-align: center;
-            margin: 20px auto;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
             transition: transform 0.3s, background-color 0.3s;
+            display: block;
+            margin: 0 auto;
         }
 
-        a:hover {
+        button:hover {
             background-color: #ff4da6;
             transform: scale(1.1);
         }
 
         /* Responsive Design */
         @media screen and (max-width: 768px) {
-            div {
+            form {
                 padding: 15px;
                 max-width: 90%;
             }
 
-            h2 {
-                font-size: 1.5em;
-            }
-
-            p {
+            label {
                 font-size: 1em;
             }
 
-            a {
+            textarea {
+                font-size: 1em;
+            }
+
+            button {
                 font-size: 1em;
             }
         }
     </style>
 </head>
 <body>
-<h1>Post Details</h1>
+<h1>Edit Post</h1>
 
-<div>
-    <h2>Post by: <span th:text="${post.korisnik.username}"></span></h2>
-    <p><strong>Content:</strong></p>
-    <p th:text="${post.content}"></p>
-    <p><strong>Posted on:</strong> <span th:text="${post.createdAt}"></span></p>
-    <p><strong>Comic:</strong> <span th:text="${post.stripovi.title}"></span></p>
-</div>
-
-<p><a th:href="@{/posts/comic/{comicId}(comicId=${comicId})}">Back to Comic</a></p>
+<form th:action="@{/posts/edit/{postId}(postId=${post.id})}" method="post">
+    <label for="content">Content:</label>
+    <textarea id="content" name="content" th:text="${post.content}"></textarea>
+    <button type="submit">Save Changes</button>
+</form>
 </body>
 </html>

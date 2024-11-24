@@ -69,5 +69,24 @@ public class PostoviController {
         return "postovi/Postovi_view";  // The Thymeleaf template to render the post details
     }
 
+    @PostMapping("/deletePost/{id}")
+    public String deletePost(@PathVariable("id") Long id) {
+        postoviService.deletePostById(id);
+        return "redirect:/posts";  // Redirect to the list of posts after deletion
+    }
+
+    @GetMapping("/posts/edit/{postId}")
+    public String editPost(@PathVariable("postId") Long postId, Model model) {
+        Postovi post = postoviService.getPostById(postId);
+        model.addAttribute("post", post);
+        return "postovi/Postovi_edit"; // editPost.html is your edit page template
+    }
+
+    // Handle post editing
+    @PostMapping("/posts/edit/{postId}")
+    public String updatePost(@PathVariable("postId") Long postId, @RequestParam("content") String content) {
+        postoviService.updatePost(postId, content);  // Update post with new content
+        return "redirect:/posts";  // Redirect to the list of posts
+    }
 
 }

@@ -1,3 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create New Post</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Page Styling */
+        body {
+            background-color: #ffe6f2; /* Soft pink background */
+            font-family: 'Baloo 2', cursive;
+            color: #444;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            color: #ff66b3; /* Vibrant pink */
+            margin-top: 20px;
+            text-shadow: 2px 2px #ffd9ec;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        label {
+            font-size: 1.2em;
+            color: #ff66b3;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.1em;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        select {
+            height: 40px;
+        }
+
+        textarea {
+            resize: none;
+            height: 150px;
+        }
+
+        button {
+            background-color: #ff66b3;
+            color: #ffffff;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+            display: block;
+            margin: 0 auto;
+        }
+
+        button:hover {
+            background-color: #ff4da6;
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            form {
+                padding: 15px;
+                max-width: 90%;
+            }
+
+            label {
+                font-size: 1em;
+            }
+
+            select,
+            textarea {
+                font-size: 1em;
+            }
+
+            button {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+<h1>Create New Post</h1>
+
 <form action="/posts/new" method="post">
     <label for="username">Select User:</label>
     <select id="username" name="userId" required>
@@ -6,6 +109,7 @@
             <option th:value="${user.id}" th:text="${user.username}"></option>
         </th:block>
     </select>
+
     <label for="comic">Select Comic:</label>
     <select id="comic" name="comicId" required>
         <option value="" disabled selected>Select a comic</option>
@@ -19,3 +123,5 @@
 
     <button type="submit">Submit</button>
 </form>
+</body>
+</html>
